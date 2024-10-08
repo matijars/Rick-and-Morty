@@ -2,8 +2,8 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD8ZZb5TXEo6Qscj4ki8E5MKgS9M0XZSuo",
-  authDomain: "shindiri-test.firebase.com",
+  apiKey: "AIzaSyD8ZZb5TXEo6Qscj4ki8E5MKgS9MOXZSuo",
+  authDomain: "shindiri-test.firebaseapp.com",
   projectId: "shindiri-test",
   storageBucket: "shindiri-test.appspot.com",
   messagingSenderId: "52617965392",
