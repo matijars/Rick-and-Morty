@@ -19,16 +19,14 @@ const Login = () => {
       localStorage.setItem("authToken", token || "");
 
       navigate("/characters");
-    } catch (error) {
-      setError("Failed to log in. Please check your credentials.");
+    } catch (error: any) {
+      setError(error.message);
     }
   };
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-gray-100">
+    <div className="min-h-screen flex flex-col justify-center items-center auth-bg">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h1 className="text-xl font-semibold text-center mb-4">Login</h1>
-
-        {error && <p className="text-red-500 mb-3 text-center">{error}</p>}
 
         <form onSubmit={handleLogin} className="flex flex-col space-y-3">
           <input
@@ -54,6 +52,8 @@ const Login = () => {
             Login
           </button>
         </form>
+
+        {error && <p className="text-red-500 mb-3 mt-3 text-center">{error}</p>}
 
         <p className="text-center mt-5 text-sm">
           Don't have an account?{" "}

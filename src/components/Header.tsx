@@ -12,15 +12,18 @@ const Header = () => {
   return (
     <>
       {token && (
-        <header className="bg-blue-500 text-white p-4">
+        <header className="bg-blue-700 text-white p-4">
           <div className="container mx-auto flex justify-between items-center">
             <h1 className="text-2xl font-bold">
               <Link to="/characters" className="hover:text-gray-200">
                 Characters
               </Link>
             </h1>
-            <button onClick={handleLogout} className="bg-red-600 p-2 rounded hover:bg-red-700">
-              Logout
+            <button
+              onClick={handleLogout}
+              className="bg-red-600 px-3 py-1.5 text-sm rounded-md hover:bg-red-700"
+            >
+              Log out
             </button>
           </div>
         </header>

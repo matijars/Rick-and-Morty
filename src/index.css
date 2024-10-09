@@ -9,3 +9,7 @@ body {
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
 }
+
+.auth-bg {
+  background: url("../public/images/auth-bg.jpg") center/cover no-repeat;
+}
