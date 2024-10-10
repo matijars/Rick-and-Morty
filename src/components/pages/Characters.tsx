@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from "react-query";
 import { Link } from "react-router-dom";
-import { fetchCharacters } from "../services/apiService";
+import { fetchCharacters } from "../../services/apiService";
 import { useEffect, useCallback } from "react";
 
 const Characters = () => {
@@ -23,7 +23,6 @@ const Characters = () => {
     }
   }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
 
-  // Scroll Event Listener
   const handleScroll = useCallback(() => {
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
 
