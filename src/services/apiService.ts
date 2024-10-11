@@ -17,6 +17,11 @@ export const fetchEpisode = async (id: string | undefined) => {
   return response.data;
 };
 
+export const fetchLocation = async (id: string | undefined) => {
+  const response = await axios.get(`${BASE_URL}/api/location/${id}`);
+  return response.data;
+};
+
 export const fetchMultipleCharacters = async (ids: string | undefined) => {
   const response = await axios.get(`${BASE_URL}/api/character/${ids}`);
   return response.data;

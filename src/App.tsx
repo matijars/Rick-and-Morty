@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import PrivateRoute from "./components/PrivateRoute";
 import CharacterDetail from "./components/pages/CharacterDetail";
 import Episode from "./components/pages/Episode";
+import Location from "./components/pages/Location";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,14 @@ function App() {
             element={
               <PrivateRoute>
                 <CharacterDetail />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/location/:id"
+            element={
+              <PrivateRoute>
+                <Location />
               </PrivateRoute>
             }
           />
