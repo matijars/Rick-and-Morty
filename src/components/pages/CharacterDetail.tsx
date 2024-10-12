@@ -13,7 +13,7 @@ const CharacterDetail = () => {
   const locationId = data.location.url.split("/").pop();
   return (
     <div className="p-7 mx-[5%]">
-      <div className="bg-white max-w-md p-2 rounded shadow-md">
+      <div className="bg-white max-w-md p-2 rounded shadow-md m-auto">
         <img src={data.image} alt={data.name} className="w-full h-64 object-cover rounded-md" />
         <div className="flex justify-between items-center my-4 ">
           <h1 className="text-2xl font-bold">{data.name}</h1>
@@ -39,6 +39,11 @@ const CharacterDetail = () => {
           <p className="text-md font-semibold text-gray-500 mb-2">
             Origin: <span className="text-gray-900">{data.origin.name}</span>
           </p>
+          {data.type && (
+            <p className="text-md font-semibold text-gray-500 mb-2">
+              Type: <span className="text-gray-900">{data.type}</span>
+            </p>
+          )}
 
           <p className="text-md font-semibold text-gray-500">
             Location:{" "}

@@ -50,11 +50,19 @@ const Episode = () => {
 
   return (
     <div className="p-7 mx-[5%]">
-      <h1>{episodeData.name}</h1>
-      <p>Air Date: {episodeData.air_date}</p>
-      <p>Episode: {episodeData.episode}</p>
+      <div className="flex justify-between flex-wrap">
+        <div className="flex items-center gap-2">
+          <h1 className="text-center text-2xl text-blue-700  font-bold">{episodeData.name}</h1>
+          <span className="text-xs text-gray-500 font-bold">{episodeData.episode}</span>
+        </div>
+        <p className="flex gap-2 items-center text-sm font-semibold text-gray-400">
+          Air Date: <span className="text-gray-500">{episodeData.air_date}</span>
+        </p>
+      </div>
 
-      <h2>Characters in this episode:</h2>
+      <h2 className="text-center text-xl text-gray-500 font-bold mt-10 mb-3">
+        Characters in this episode:
+      </h2>
       <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
         {charactersData?.map((character: any) => (
           <Link
