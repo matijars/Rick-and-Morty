@@ -2,12 +2,15 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../services/firebase";
+import useRedirectIfLoggedIn from "../../hooks/redirectIfLoggedIn";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+
+  useRedirectIfLoggedIn();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -16,7 +19,7 @@ const Login = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       const token = await auth.currentUser?.getIdToken(true);
-      localStorage.setItem("authToken", token || "");
+      localStorage.setItem("token", token || "");
 
       navigate("/characters");
     } catch (error: any) {

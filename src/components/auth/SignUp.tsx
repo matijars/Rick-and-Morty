@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../services/firebase";
+import useRedirectIfLoggedIn from "../../hooks/redirectIfLoggedIn";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -9,6 +10,8 @@ const SignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+
+  useRedirectIfLoggedIn();
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,7 +25,7 @@ const SignUp = () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       const token = await auth.currentUser?.getIdToken(true);
-      localStorage.setItem("authToken", token || "");
+      localStorage.setItem("token", token || "");
 
       navigate("/characters");
     } catch (error) {

@@ -5,7 +5,7 @@ interface PrivateRouteProps {
 }
 
 const PrivateRoute = ({ children }: PrivateRouteProps) => {
-  const token = localStorage.getItem("authToken");
+  const token = localStorage.getItem("token");
 
   return token ? children : <Navigate to="/login" />;
 };

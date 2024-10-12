@@ -1,9 +1,11 @@
 import { useInfiniteQuery } from "react-query";
 import { Link } from "react-router-dom";
 import { fetchCharacters } from "../../services/apiService";
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useState } from "react";
 
 const Characters = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredCharacters, setFilteredCharacters] = useState([]);
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading, error } =
     useInfiniteQuery("characters", ({ pageParam = 1 }) => fetchCharacters(pageParam), {
       getNextPageParam: (lastPage) => {
@@ -44,6 +46,18 @@ const Characters = () => {
 
   return (
     <div className="p-7 mx-[5%]">
+      <div className="relative w-full max-w-md mx-auto mb-7">
+        <input
+          className="w-full px-4 py-2 pr-16 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-300"
+          type="text"
+          placeholder="Search for characters..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+        <button className="absolute right-0 top-0 h-full px-3 text-sm bg-blue-500 text-white rounded-r-md shadow-md hover:bg-blue-600 transition duration-300">
+          Search
+        </button>
+      </div>
       <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
         {data?.pages.map((page) =>
           page.results.map((character: any) => (

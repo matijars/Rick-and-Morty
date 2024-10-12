@@ -2,18 +2,18 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const navigate = useNavigate();
-  const token = localStorage.getItem("authToken");
+  const token = localStorage.getItem("token");
 
   const handleLogout = () => {
-    localStorage.removeItem("authToken");
+    localStorage.removeItem("token");
     navigate("/login");
   };
 
   return (
     <>
       {token && (
-        <header className="bg-blue-700 text-white p-4">
-          <div className="container mx-auto flex justify-between items-center">
+        <div className="px-7 pt-5 mx-[5%]">
+          <header className="flex justify-between bg-gradient-to-r rounded from-blue-900 to-blue-500 text-white p-4 shadow-lg shadow-black/30">
             <h1 className="text-2xl font-bold">
               <Link
                 to="/characters"
@@ -28,8 +28,8 @@ const Header = () => {
             >
               Log out
             </button>
-          </div>
-        </header>
+          </header>
+        </div>
       )}
     </>
   );

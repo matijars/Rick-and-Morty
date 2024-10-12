@@ -50,14 +50,17 @@ const Episode = () => {
 
   return (
     <div className="p-7 mx-[5%]">
-      <div className="flex justify-between flex-wrap">
-        <div className="flex items-center gap-2">
-          <h1 className="text-center text-2xl text-blue-700  font-bold">{episodeData.name}</h1>
-          <span className="text-xs text-gray-500 font-bold">{episodeData.episode}</span>
+      <div className="flex gap-4 justify-between flex-wrap">
+        <h1 className="text-center text-2xl text-blue-700  font-bold">{episodeData.name}</h1>
+
+        <div>
+          <p className="flex gap-2 items-center text-sm font-semibold text-gray-400">
+            Air Date: <span className="text-gray-500">{episodeData.air_date}</span>
+          </p>
+          <p className="flex gap-2 items-center text-sm font-semibold text-gray-400">
+            Episode: <span className="text-gray-500">{episodeData.episode}</span>
+          </p>
         </div>
-        <p className="flex gap-2 items-center text-sm font-semibold text-gray-400">
-          Air Date: <span className="text-gray-500">{episodeData.air_date}</span>
-        </p>
       </div>
 
       <h2 className="text-center text-xl text-gray-500 font-bold mt-10 mb-3">
