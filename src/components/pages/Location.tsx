@@ -1,8 +1,9 @@
 import { Link, useParams } from "react-router-dom";
-import { LocationInterface } from "../../models/models";
+import { CharacterInterface, LocationInterface } from "../../models/models";
 import { useEffect, useState } from "react";
 import { fetchLocation, fetchMultipleCharacters } from "../../services/apiService";
 import { useQuery } from "react-query";
+import Loader from "../Loader";
 
 const Location = () => {
   const { id } = useParams();
@@ -31,21 +32,21 @@ const Location = () => {
   const {
     data: charactersData,
     isLoading: charactersLoading,
-    error: charactersError,
+    error,
   } = useQuery(["characters", characterIds], () => fetchMultipleCharacters(characterIds), {
     enabled: !!characterIds,
   });
+
   if (loading || charactersLoading) {
-    return <p>Loading...</p>;
+    return <Loader />;
   }
 
   if (!locationData) {
-    return <p>No location data found.</p>;
+    return <p className="text-red-500 text-center mt-10">No location data found.</p>;
   }
 
-  if (charactersError) {
-    return <p>Error fetching characters data...</p>;
-  }
+  if (error instanceof Error)
+    return <p className="text-red-500 text-center mt-10">{error.message}</p>;
 
   return (
     <div className="p-7 mx-[5%]">
@@ -62,7 +63,7 @@ const Location = () => {
         Residents in this location:
       </h2>
       <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-        {charactersData?.map((character: any) => (
+        {charactersData?.map((character: CharacterInterface) => (
           <Link
             key={character.id}
             to={`/characters/${character.id}`}

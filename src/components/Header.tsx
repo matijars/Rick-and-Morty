@@ -9,6 +9,10 @@ const Header = () => {
     navigate("/login");
   };
 
+  const handleCharactersClick = () => {
+    window.location.href = "/characters";
+  };
+
   return (
     <>
       {token && (
@@ -17,6 +21,7 @@ const Header = () => {
             <h1 className="text-2xl font-bold">
               <Link
                 to="/characters"
+                onClick={handleCharactersClick}
                 className="hover:text-gray-200 transition duration-300 ease-in-out"
               >
                 Characters

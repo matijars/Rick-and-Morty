@@ -2,15 +2,21 @@ import { useParams, Link } from "react-router-dom";
 import { useQuery } from "react-query";
 import { fetchCharacterById } from "../../services/apiService";
 import { Key } from "react";
+import Loader from "../Loader";
 
 const CharacterDetail = () => {
   const { id } = useParams<{ id: string }>();
 
-  const { data, isLoading, error } = useQuery(["character", id], () => fetchCharacterById(id));
+  const { data, isLoading, error } = useQuery(["character", id], () => fetchCharacterById(id), {
+    refetchOnWindowFocus: false,
+  });
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error fetching character data...</p>;
+  if (isLoading) return <Loader />;
+  if (error instanceof Error)
+    return <p className="text-red-500 text-center mt-10">{error.message}</p>;
+
   const locationId = data.location.url.split("/").pop();
+
   return (
     <div className="p-7 mx-[5%]">
       <div className="bg-white max-w-md p-2 rounded shadow-md m-auto">

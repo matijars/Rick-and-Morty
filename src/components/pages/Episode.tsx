@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { fetchEpisode, fetchMultipleCharacters } from "../../services/apiService"; // Adjust the import path as needed
-import { EpisodeInterface } from "../../models/models";
+import { CharacterInterface, EpisodeInterface } from "../../models/models";
+import Loader from "../Loader";
 
 const Episode = () => {
   const { id } = useParams();
@@ -31,22 +32,21 @@ const Episode = () => {
   const {
     data: charactersData,
     isLoading: charactersLoading,
-    error: charactersError,
+    error,
   } = useQuery(["characters", characterIds], () => fetchMultipleCharacters(characterIds), {
     enabled: !!characterIds,
   });
 
   if (loading || charactersLoading) {
-    return <p>Loading...</p>;
+    return <Loader />;
   }
 
   if (!episodeData) {
-    return <p>No episode data found.</p>;
+    return <p className="text-red-500 text-center mt-10">No episode data found.</p>;
   }
 
-  if (charactersError) {
-    return <p>Error fetching characters data...</p>;
-  }
+  if (error instanceof Error)
+    return <p className="text-red-500 text-center mt-10">{error.message}</p>;
 
   return (
     <div className="p-7 mx-[5%]">
@@ -67,7 +67,7 @@ const Episode = () => {
         Characters in this episode:
       </h2>
       <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-        {charactersData?.map((character: any) => (
+        {charactersData?.map((character: CharacterInterface) => (
           <Link
             key={character.id}
             to={`/characters/${character.id}`}
