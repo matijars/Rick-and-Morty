@@ -84,7 +84,7 @@ const Location = () => {
                       ? "text-green-500"
                       : character.status === "Dead"
                       ? "text-red-500"
-                      : "text-yellow-500" // For "Unknown" or any other status
+                      : "text-yellow-500"
                   }`}
                 >
                   {character.status}

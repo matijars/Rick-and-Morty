@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useQuery } from "react-query";
-import { fetchEpisode, fetchMultipleCharacters } from "../../services/apiService"; // Adjust the import path as needed
+import { fetchEpisode, fetchMultipleCharacters } from "../../services/apiService";
 import { CharacterInterface, EpisodeInterface } from "../../models/models";
 import Loader from "../Loader";
 
@@ -88,7 +88,7 @@ const Episode = () => {
                       ? "text-green-500"
                       : character.status === "Dead"
                       ? "text-red-500"
-                      : "text-yellow-500" // For "Unknown" or any other status
+                      : "text-yellow-500"
                   }`}
                 >
                   {character.status}
